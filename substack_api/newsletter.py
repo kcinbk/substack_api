@@ -108,8 +108,7 @@ class Newsletter:
 
         Returns
         -------
-        List[Post]
-            List of Post objects
+        Json structure of posts and metadata
         """
         from .post import Post  # Import here to avoid circular import
         
@@ -118,20 +117,21 @@ class Newsletter:
 
         posts = []
         for item in post_data:
-
-            post_list= {
+            post_list = {
                 'id': item.get("id"),
                 "title": item.get("title"),
                 "subtitle": item.get("subtitle"),
+                'authors': ', '.join(byline.get("name") for byline in item.get("publishedBylines", [])),
                 'publication': item.get("publishedBylines", [{}])[0].get("publicationUsers", [{}])[0].get("publication", {}).get("name"),
                 'post_date': item.get('post_date'),
                 'word_count': item.get("wordcount"),
                 "url": item.get("canonical_url"),
-                "reaction_count": item.get("reaction_count",None),
+                "reaction_count": item.get("reaction_count"),
                 "comment_count": item.get("comment_count"),
-
             }
-            posts.append(post_list)
+
+        # Append the post to the posts list
+        posts.append(post_list)
 
         return posts
 
