@@ -129,9 +129,7 @@ class Newsletter:
                 "reaction_count": item.get("reaction_count"),
                 "comment_count": item.get("comment_count"),
             }
-
-        # Append the post to the posts list
-        posts.append(post_list)
+            posts.append(post_list)
 
         return posts
 
