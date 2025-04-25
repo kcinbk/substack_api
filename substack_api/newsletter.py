@@ -112,10 +112,33 @@ class Newsletter:
             List of Post objects
         """
         from .post import Post  # Import here to avoid circular import
-
+        
         params = {"sort": sorting}
         post_data = self._fetch_paginated_posts(params, limit)
-        return [Post(item["canonical_url"]) for item in post_data]
+
+        posts = []
+
+        for item in post_data:
+            post_list= {
+                "title": item["title"],
+                "subtitle": item["subtitle"],
+                "url": item["canonical_url"],
+                "reaction_count": item["reaction_count"],
+                "like_count": item["like_count"],
+                "comment_count": item["comment_count"],
+                "video_id": item["video_upload_id"],
+                "podcast_id": item["podcast_upload_id"]
+            }
+            posts.append(post_list)
+
+
+        return posts
+
+    
+    
+
+
+
 
     def search_posts(self, query: str, limit: Optional[int] = None) -> List:
         """
