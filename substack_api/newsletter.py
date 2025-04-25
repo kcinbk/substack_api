@@ -117,6 +117,11 @@ class Newsletter:
 
         posts = []
         for item in post_data:
+            bylines = item.get("publishedBylines", [])
+            if bylines and bylines[0].get("publicationUsers"):
+                publication = bylines[0]["publicationUsers"][0].get("publication", {}).get("name")
+            else:
+                publication = None
             post_list = {
                 'id': item.get("id"),
                 "title": item.get("title"),
