@@ -119,15 +119,17 @@ class Newsletter:
         posts = []
         for item in post_data:
             post_list= {
-                'id': item.get("id", None),
-                "title": item.get("title", None),
-                "subtitle": item.get("subtitle", None),
-                'word_count': item.get("wordcount", None),
-                "url": item.get("canonical_url", None),
+                'id': item.get("id"),
+                "title": item.get("title"),
+                "subtitle": item.get("subtitle"),
+                'publication': item.get('publishedBylines', {}).get('publication', {}).get('name'),
+                'post_date': item.get('post_date'),
+                'word_count': item.get("wordcount"),
+                "url": item.get("canonical_url"),
                 "reaction_count": item.get("reaction_count",None),
-                "comment_count": item.get("comment_count",None),
-                "video_id": item.get("video_upload_id", None),
-                "podcast_id": item.get("podcast_upload_id", None)
+                "comment_count": item.get("comment_count"),
+                "video_id": item.get("video_upload_id"),
+                "podcast_id": item.get("podcast_upload_id")
             }
             posts.append(post_list)
 
