@@ -120,24 +120,19 @@ class Newsletter:
 
         for item in post_data:
             post_list= {
-                "title": item["title"],
-                "subtitle": item["subtitle"],
-                "url": item["canonical_url"],
-                "reaction_count": item["reaction_count"],
-                "like_count": item["like_count"],
-                "comment_count": item["comment_count"],
-                "video_id": item["video_upload_id"],
-                "podcast_id": item["podcast_upload_id"]
+                "title": item.get("title", None),
+                "subtitle": item.get("subtitle", None),
+                "url": item.get("canonical_url"),
+                "reaction_count": item.get("reaction_count",None),
+                "like_count": item.get("like_count", None),
+                "comment_count": item.get("comment_count",None),
+                "video_id": item.get("video_upload_id", None),
+                "podcast_id": item.get("podcast_upload_id", None)
             }
+            
             posts.append(post_list)
 
-
         return posts
-
-    
-    
-
-
 
 
     def search_posts(self, query: str, limit: Optional[int] = None) -> List:
