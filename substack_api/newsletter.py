@@ -117,19 +117,18 @@ class Newsletter:
         post_data = self._fetch_paginated_posts(params, limit)
 
         posts = []
-
         for item in post_data:
             post_list= {
+                'id': item.get("id", None),
                 "title": item.get("title", None),
                 "subtitle": item.get("subtitle", None),
-                "url": item.get("canonical_url"),
+                'word_count': item.get("wordcount", None),
+                "url": item.get("canonical_url", None),
                 "reaction_count": item.get("reaction_count",None),
-                "like_count": item.get("like_count", None),
                 "comment_count": item.get("comment_count",None),
                 "video_id": item.get("video_upload_id", None),
                 "podcast_id": item.get("podcast_upload_id", None)
             }
-            
             posts.append(post_list)
 
         return posts
