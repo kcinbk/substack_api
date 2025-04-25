@@ -127,7 +127,7 @@ class Newsletter:
                 "title": item.get("title"),
                 "subtitle": item.get("subtitle"),
                 'authors': ', '.join(byline.get("name") for byline in item.get("publishedBylines", [])),
-                'publication': item.get("publishedBylines", [{}])[0].get("publicationUsers", [{}])[0].get("publication", {}).get("name"),
+                'publication': publication,
                 'post_date': item.get('post_date'),
                 'word_count': item.get("wordcount"),
                 "url": item.get("canonical_url"),
